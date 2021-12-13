@@ -17,14 +17,26 @@
 	<li class="list-group-item">Modified At : ${pvo.modAt }</li>
 	<li class="list-group-item">Read Count : ${pvo.readCount }</li>
 	<li class="list-group-item">Image File : ${pvo.imgFile }</li>
+	<li>
+		<img alt="" src="../_fileUpload/${pvo.imgFile }">
+	</li>
 </ul>
 
-<c:if test="${mvo.email == pvo.writer }">
+<c:if test="${mvo.email == pvo.writer || mvo.grade >= 100}">
 	<a href="/prodCtrl/modify?pno=${pvo.pno }"
 		class="btn btn-sm btn-outline-warning">modify</a>
-	<a href="/prodCtrl/remove?pno=${pvo.pno }"
-		class="btn btn-sm btn-outline-danger">delete</a>
+		
+	<button class="btn btn-sm btn-danger" id="delBtn" >del</button>
+	<form action="/prodCtrl/remove" method="post" id="delForm" style="display: none;">
+		<input type="hidden" name="pno" value="${pvo.pno }">
+		<input type="hidden" name="imgFile" value="${pvo.imgFile }">
+	</form>
+	<%-- <a href="/prodCtrl/remove?pno=${pvo.pno }" id="delBtn"
+		class="btn btn-sm btn-outline-danger">delete</a> --%>
 </c:if>
 <a href="/prodCtrl/list"
 	class="btn btn-sm btn-outline-primary">list</a>
+	<script src="/resources/js/product.detail.js">
+
+</script>
 <jsp:include page="../footer.jsp" />

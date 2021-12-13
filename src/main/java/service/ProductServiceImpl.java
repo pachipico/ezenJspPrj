@@ -43,14 +43,12 @@ public class ProductServiceImpl implements ProductService {
 		return dao.delete(pno);
 	}
 
-	
-
 	@Override
 	public ProductVO getOneAndUp(Long pno) {
+		ProductVO pvo =  dao.selectOne(pno);
 		int isUp = dao.addReadCount(pno);
-		log.info(">>> addreadcount > {}", isUp > 0 ? "success" : "fail");
-		return dao.selectOne(pno);
+		pvo.setReadCount(pvo.getReadCount() + isUp);
+		return pvo;
 	}
 
-	
 }

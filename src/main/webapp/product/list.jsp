@@ -27,8 +27,10 @@
 				<td>${pvo.writer }</td>
 				<td>${pvo.modAt }</td>
 				<td>${pvo.readCount }</td>
-				<td>${pvo.imgFile }</td>
-				<td><c:if test="${mvo.email == pvo.writer }">
+				<td><c:if test="${!empty pvo.imgFile  }">
+						<img src="../_fileUpload/th_${pvo.imgFile }">
+					</c:if></td>
+				<td><c:if test="${mvo.email == pvo.writer || mvo.grade >= 100}">
 						<a href="/prodCtrl/modify?pno=${pvo.pno }"
 							class="btn btn-sm btn-outline-warning">modify</a>
 
